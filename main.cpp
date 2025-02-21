@@ -5,11 +5,12 @@
 #include "Program/Tuples/Action.hpp"
 #include "Program/Tuples/Setup.hpp"
 #include "Machine/Enigma.hpp"
+#include "Machine/Components/Keyboard.hpp"
 #include "Machine/Components/Lampboard.hpp"
 
 auto main(int argc, char* argv[]) -> int {
     try {
-        auto input_values = input::base_collect(argc, argv);
+        auto input_values = machine::keyboard::type_in(argc, argv);
         auto flags = input::Flags(input_values);
         flags.validate();
         auto action = Action(flags.get_action());
