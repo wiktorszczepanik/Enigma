@@ -36,7 +36,7 @@ namespace input {
         auto text = flags[Mode::CRYPT];
         valid_t = std::all_of(text.begin(), text.end(), [] (char c) {
             return std::isalpha(c);
-        });
+        }) && text.size() != 0;
         if (!valid_t) throw std::invalid_argument(
             "The text contains other characters besides letters.");
         auto setup = flags[Mode::SETUP];

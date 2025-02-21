@@ -11,6 +11,5 @@ class Action {
     Action(std::pair<Mode, std::string>);
     auto util() -> void;
     private:
-    auto check_message() const -> void;
-    auto transform_message() -> void;
+    auto transform_message(std::string&) -> void;
 };
