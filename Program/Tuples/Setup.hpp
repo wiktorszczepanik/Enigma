@@ -18,7 +18,7 @@ class Setup {
     Setup(std::pair<Mode, std::string>);
     auto util() -> void;
     private:
-    auto set_rotors() -> void;
-    auto set_number_sequence() -> void;
-    auto set_plugboard() -> void;
+    auto load_rotors() -> void;
+    auto load_number_sequence() -> void;
+    auto load_plugboard() -> void;
 };

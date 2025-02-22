@@ -21,7 +21,7 @@ auto main(int argc, char* argv[]) -> int {
         auto output = enigma.calculate();
         machine::lampboard::lights(output);
     } catch(std::exception& exception) {
-        std::cout << exception.what();
+        std::cout << exception.what() << std::endl;
         return 1;
     }
     return 0;
