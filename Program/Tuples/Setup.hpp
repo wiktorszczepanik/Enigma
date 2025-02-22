@@ -12,13 +12,10 @@
 class Setup {
     Mode mode;
     std::filesystem::path path;
-    std::array<Rotor, 3> rotors;
-    Plugboard plugboard;
     public:
     Setup(std::pair<Mode, std::string>);
-    auto util() -> void;
+    auto util() -> std::tuple<std::array<Rotor, 3>, Plugboard>;
     private:
-    auto load_rotors() -> void;
-    auto load_number_sequence() -> void;
-    auto load_plugboard() -> void;
+    auto load_rotors(std::fstream&) -> std::array<Rotor, 3>;
+    auto load_plugboard(std::fstream&) -> Plugboard;
 };

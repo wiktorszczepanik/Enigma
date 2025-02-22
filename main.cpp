@@ -11,13 +11,12 @@
 auto main(int argc, char* argv[]) -> int {
     try {
         auto input_values = machine::keyboard::type_in(argc, argv);
-        auto flags = input::Flags(input_values);
-        flags.validate();
+        auto flags = input::Flags(input_values); flags.validate();
         auto action = Action(flags.get_action());
-        action.util();
+        auto message = action.get_message();
         auto setup = Setup(flags.get_setup());
-        setup.util();
-        auto enigma = Enigma(setup, action);
+        auto [rotors, plugboard] = setup.util();
+        auto enigma = Enigma(rotors, plugboard, message);
         auto output = enigma.calculate();
         machine::lampboard::lights(output);
     } catch(std::exception& exception) {

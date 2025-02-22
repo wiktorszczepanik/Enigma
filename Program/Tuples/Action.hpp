@@ -9,7 +9,7 @@ class Action {
     std::string message;
     public:
     Action(std::pair<Mode, std::string>);
-    auto util() -> void;
+    auto get_message() -> std::string;
     private:
     auto transform_message(std::string&) -> void;
 };

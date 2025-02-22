@@ -5,6 +5,6 @@
 class Rotor {
     int start_sequence;
     // map
-    Rotor();
+    Rotor() = default;
     public:
 };
