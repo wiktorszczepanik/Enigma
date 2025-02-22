@@ -51,6 +51,6 @@ namespace input {
 
     auto Flags::get_setup() -> std::pair<Mode, std::string> {
             return std::pair<Mode, std::string>(Mode::SETUP, flags[Mode::SETUP]);
-        }
+    }
 
 }

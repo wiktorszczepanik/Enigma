@@ -1,0 +1,7 @@
+# Files to ingnore
+/build
+/CMakeFiles
+/CMakeCache.txt
+/Makefile
+/*.cmake
+
