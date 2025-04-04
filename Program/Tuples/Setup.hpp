@@ -14,8 +14,8 @@ class Setup {
     std::filesystem::path path;
     public:
     Setup(std::pair<Mode, std::string>);
-    auto util() -> std::tuple<std::array<Rotor, 3>, Plugboard>;
+    auto util() -> std::tuple<std::vector<Rotor>, Plugboard>;
     private:
-    auto load_rotors(std::fstream&) -> std::array<Rotor, 3>;
+    auto load_rotors(std::fstream&) -> std::vector<Rotor>;
     auto load_plugboard(std::fstream&) -> Plugboard;
 };

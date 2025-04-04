@@ -12,7 +12,7 @@ namespace input {
 
     Flags::Flags(std::vector<std::string>& input) {
         if (input.size() != 4) throw std::invalid_argument(
-            "Incorrect number of arguments.");
+            "Incorrect number of arguments.\n");
         flags = struct_transform(input);
     }
 
