@@ -15,7 +15,7 @@ auto main(int argc, char* argv[]) -> int {
         auto input_values = machine::keyboard::type_in(argc, argv);
         auto flags = input::Flags(input_values); flags.validate();
         auto action = Action(flags.get_action());
-        auto message = action.get_message(); // Upper case text (std::string)
+        auto message = action.get_message();
         auto setup = Setup(flags.get_setup());
         auto [rotors, plugboard, reflector, keyboard] = setup.util();
         auto enigma = Enigma(rotors, plugboard, reflector, keyboard);
