@@ -20,14 +20,16 @@ Setup::Setup(std::pair<Mode, std::string> setup) {
     path = fs::path(setup.second);
 }
 
-auto Setup::util() -> std::tuple<std::vector<Rotor>, Plugboard> {
+auto Setup::util() -> std::tuple<std::vector<Rotor>, Plugboard, Reflector, Keyboard> {
     auto file = std::fstream(path, std::ios::in);
     if (!file.is_open()) throw std::ios_base::failure(
         "Cannot open the file.");
     auto rotors = load_rotors(file);
+    auto reflector = load_reflector(file);
     auto plugboard = load_plugboard(file);
+    auto keyboard = Keyboard();
     file.close();
-    return std::make_tuple(rotors, plugboard);
+    return std::make_tuple(rotors, plugboard, reflector, keyboard);
 }
 
 auto Setup::load_rotors(std::fstream& file) -> std::vector<Rotor> {
@@ -57,13 +59,25 @@ auto Setup::load_rotors(std::fstream& file) -> std::vector<Rotor> {
     return rotors_list;
 }
 
+auto Setup::load_reflector(std::fstream& file) -> Reflector {
+    auto type = int();
+    auto reflector_line = std::string();
+    std::getline(file, reflector_line);
+    if (reflector_line == "A") type = 1;
+    else if (reflector_line == "B") type = 2;
+    else if (reflector_line == "C") type = 3;
+    else throw std::invalid_argument("Invalid reflector type.");
+    return Reflector(type);
+}
+
 auto Setup::load_plugboard(std::fstream& file) -> Plugboard {
     auto plugboard = Plugboard();
     auto line = std::string();
     while (std::getline(file, line)) {
-        if (line.length() == 3 && (line[1] == '-' || line[1] == '='))
+        if (line.length() == 3 && (line[1] == '-' || line[1] == '=')) {
             plugboard.connection_append(line[0], line[2]);
-        else throw std::invalid_argument("Incorrect plugboard syntax.");
+            // plugboard.connection_append(line[2], line[0]);
+        } else throw std::invalid_argument("Incorrect plugboard syntax.");
     }
     return plugboard;
 }

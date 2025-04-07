@@ -4,6 +4,19 @@
 
 #include "Keyboard.hpp"
 
+
+Keyboard::Keyboard() {
+    letters = std::string("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+}
+
+auto Keyboard::forward(char letter) -> int {
+    return letters.find(letter);
+}
+
+auto Keyboard::backward(int signal) -> char {
+    return letters.at(signal);
+}
+
 namespace machine::keyboard {
 
     auto type_in(int argc, char* argv[]) -> std::vector<std::string> {

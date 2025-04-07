@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ios>
 
+#include "Machine/Components/Rotor.hpp"
 #include "Program/Collector/Input.hpp"
 #include "Program/Tuples/Action.hpp"
 #include "Program/Tuples/Setup.hpp"
@@ -16,13 +17,15 @@ auto main(int argc, char* argv[]) -> int {
         auto action = Action(flags.get_action());
         auto message = action.get_message(); // Upper case text (std::string)
         auto setup = Setup(flags.get_setup());
-        auto [rotors, plugboard] = setup.util();
-        auto enigma = Enigma(rotors, plugboard, message);
-        // auto output = enigma.calculate();
-        // machine::lampboard::lights(output);
+        auto [rotors, plugboard, reflector, keyboard] = setup.util();
+        auto enigma = Enigma(rotors, plugboard, reflector, keyboard);
+        enigma.set_key();
+        auto output_text = std::string();
+        for (auto letter : message)
+            output_text += enigma.calculate(letter);
+        machine::lampboard::lights(output_text);
     } catch(std::exception& exception) {
         std::cout << exception.what() << std::endl;
-        // std::cout << message << std::endl;
         return 1;
     }
     return 0;
