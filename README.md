@@ -1,6 +1,6 @@
 ## Enigma
 
-This is a C++ implementation of an Enigma machine, inspired by the historical cipher machine used during World War II. It mimics the encryption process using rotors, plugboards, and a reflector. The program takes an input message (-t), encrypts it using the settings provided by the user (-s), and outputs the encrypted message. The values used for machine components are based on the settings used in the early models of the "Enigma I" machine.
+This is a C++ implementation of an Enigma machine, inspired by the historical cipher machine used during World War II. It mimics the encryption process using rotors, plugboards, and a reflector. The program takes an input message **(-t)**, encrypts it using the settings provided by the user **(-s)**, and outputs the encrypted message. The values used for machine components are based on the settings used in the early models of the "Enigma I".
 
 ### Features
 
